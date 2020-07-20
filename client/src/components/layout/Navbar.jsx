@@ -9,6 +9,7 @@ import {
   NavItem,
   NavLink,
   NavbarText,
+  Container,
 } from "reactstrap";
 
 import { logout } from "../../actions/auth";

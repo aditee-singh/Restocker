@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addComment } from "../../actions/post";
-
+import { Row, Col, Input, Form, FormGroup } from "reactstrap";
 const CommentForm = ({ postId }) => {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
@@ -12,18 +12,18 @@ const CommentForm = ({ postId }) => {
     setText("");
   };
   return (
-    <div>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <input
+    <Form onSubmit={(e) => handleSubmit(e)}>
+      <FormGroup>
+        <Input
           type="text"
           name="text"
           value={text}
-          onChange={(e) => setText(e.target.value)}
           id="text"
+          onChange={(e) => setText(e.target.value)}
+          placeholder="Join the convo"
         />
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+      </FormGroup>
+    </Form>
   );
 };
 export default CommentForm;

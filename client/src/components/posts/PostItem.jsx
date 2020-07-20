@@ -21,7 +21,10 @@ const PostItem = ({
   return (
     <Fragment>
       <Container>
-        <Link to={`/posts/${_id}`}>
+        <Link
+          style={{ textDecoration: "none", color: "black" }}
+          to={`/posts/${_id}`}
+        >
           <Card style={{ textDecoration: "!important none" }} className="my-3">
             <h3>
               <CardHeader
@@ -32,11 +35,6 @@ const PostItem = ({
               </CardHeader>
             </h3>
             <CardBody>
-              {user && (
-                <Fragment>
-                  {user.name} {user.email}
-                </Fragment>
-              )}
               <img
                 src={
                   imageUrl ||
@@ -52,22 +50,7 @@ const PostItem = ({
             >
               {trade.trade}
               <div>
-                <button
-                  type="button"
-                  onClick={() => dispatch(addLike(_id))}
-                  className="btn btn-light"
-                >
-                  <i className="fas fa-thumbs-up"></i>
-                  <span>{likes.length > 0 && likes.length}</span>
-                  People interested in this:
-                </button>
-                <button
-                  type="button"
-                  onClick={() => dispatch(removeLike(_id))}
-                  className="btn btn-light"
-                >
-                  <i className="fas fa-thumbs-down"></i>
-                </button>
+                People interested in this: <span>{likes.length}</span>
               </div>
             </CardFooter>
           </Card>

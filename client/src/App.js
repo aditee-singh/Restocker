@@ -13,6 +13,7 @@ import setToken from "./utils/setAuthToken";
 import Landing from "./components/layout/Landing";
 import Post from "./components/post/Post";
 import PostForm from "./components/posts/PostForm";
+import { Container } from "reactstrap";
 const App = () => {
   if (localStorage.token) {
     setToken(localStorage.token);
@@ -27,11 +28,17 @@ const App = () => {
         <Route path="/" exact component={Landing}></Route>
         <ReactAlert></ReactAlert>
         <Switch>
-          <Route path="/register" exact component={Register}></Route>
-          <Route path="/login" exact component={Login}></Route>
-          <Route path="/new-post" exact component={PostForm}></Route>
-          <PrivateRoute path="/posts" exact component={Posts}></PrivateRoute>
-          <PrivateRoute path="/posts/:id" exact component={Post}></PrivateRoute>
+          <Container>
+            <Route path="/register" exact component={Register}></Route>
+            <Route path="/login" exact component={Login}></Route>
+            <Route path="/new-post" exact component={PostForm}></Route>
+            <PrivateRoute path="/posts" exact component={Posts}></PrivateRoute>
+            <PrivateRoute
+              path="/posts/:id"
+              exact
+              component={Post}
+            ></PrivateRoute>
+          </Container>
         </Switch>
       </Fragment>
     </Router>
