@@ -41,7 +41,7 @@ const Login = () => {
           <Container>
             <CardTitle>
               <h2 className="text-muted" align="center">
-                SIGN UP
+                SIGN IN
               </h2>
             </CardTitle>
             <Form onSubmit={(e) => onSubmit(e)}>

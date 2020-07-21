@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Collapse,
@@ -7,9 +8,9 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   NavbarText,
   Container,
+  NavLink,
 } from "reactstrap";
 
 import { logout } from "../../actions/auth";
@@ -22,11 +23,21 @@ const Example = () => {
 
   const guestLink = (
     <Nav className="mr-auto" navbar>
-      <NavItem>
-        <NavLink to="/login">Login</NavLink>
+      <NavItem className="mx-3">
+        <Link
+          to="/login"
+          style={{ textDecoration: "!important none", color: "#FFF" }}
+        >
+          Login
+        </Link>
       </NavItem>
       <NavItem>
-        <NavLink to="/register">Register</NavLink>
+        <Link
+          to="/register"
+          style={{ textDecoration: "!important none", color: "#FFF" }}
+        >
+          Register
+        </Link>
       </NavItem>
     </Nav>
   );

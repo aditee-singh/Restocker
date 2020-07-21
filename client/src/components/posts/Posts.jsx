@@ -20,7 +20,7 @@ const Posts = () => {
         <div className="center">
           <DropDown></DropDown>
         </div>
-        <h3 align="center">{category ? category : "All Posts"}</h3>;
+        <h3 align="center">{category ? category : "All Posts"}</h3>
         <Row>
           <Col sm={12} md={{ size: 6, offset: 3 }}>
             <section>

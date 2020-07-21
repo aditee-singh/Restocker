@@ -73,6 +73,7 @@ export const login = (formData) => async (dispatch) => {
     if (errors) {
       errors.map((error) => dispatch(setAlert(error.msg, "danger")));
     }
+
     dispatch({ type: LOGIN_FAIL });
   }
 };
