@@ -30,6 +30,9 @@ const PostSchema = new Schema({
   imageUrl: {
     type: String,
   },
+  imagePublicId: {
+    type: String,
+  },
   likes: [
     {
       user: {

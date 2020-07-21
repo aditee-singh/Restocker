@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 
 import { addPost } from "../../actions/post";
 import Axios from "axios";
-const PostForm = () => {
+import { Redirect } from "react-router-dom";
+const PostForm = ({ history }) => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     title: "",
@@ -18,7 +19,7 @@ const PostForm = () => {
       [e.target.name]: e.target.value,
     });
   const { title, description, category, trade } = formData;
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData();
     data.append("title", title);
@@ -27,7 +28,10 @@ const PostForm = () => {
     data.append("trade", trade);
     data.append("image", file);
     Axios.post("/api/posts", data)
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res);
+        history.push("/posts");
+      })
       .catch((err) => console.log(err));
   };
   return (

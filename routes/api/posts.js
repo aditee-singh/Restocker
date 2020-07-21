@@ -96,21 +96,33 @@ router.post(
 
     try {
       console.log(req.file);
-      const result = await cloudinary.v2.uploader.upload(req.file.path, {
-        upload_preset: "restocker",
-      });
       const { title, description, category, trade } = req.body;
       const trad = await Trade.findOne({ trade });
       const cat = await Category.findOne({ category });
-      console.log(result);
-      let post = new Post({
-        title,
-        description,
-        user: req.user.id,
-        category: cat.id,
-        trade: trad.id,
-        imageUrl: result.secure_url,
-      });
+      let post;
+      if (req.file) {
+        const result = await cloudinary.v2.uploader.upload(req.file.path, {
+          upload_preset: "restocker",
+        });
+        post = new Post({
+          title,
+          description,
+          user: req.user.id,
+          category: cat.id,
+          trade: trad.id,
+          imageUrl: result.secure_url,
+          imagePublicId: result.public_id,
+        });
+        console.log(result);
+      } else {
+        post = new Post({
+          title,
+          description,
+          user: req.user.id,
+          category: cat.id,
+          trade: trad.id,
+        });
+      }
       post = await post.save();
       return res.json(post);
     } catch (error) {
@@ -151,6 +163,29 @@ router.put(
     }
   }
 );
+
+//@route DELETE api/posts/:post_id
+//@desc DELETE a post
+//@access Private
+router.delete("/:post_id", auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.post_id);
+    if (!post) {
+      return res.status(404).json({ msg: "Post not found" });
+    }
+    if (post.user.toString() !== req.user.id.toString()) {
+      return res.status(404).json({ msg: "You can only delete your posts" });
+    }
+    if (post.imageUrl) {
+      await cloudinary.v2.uploader.destroy(post.imagePublicId);
+    }
+    await post.remove();
+    res.json({ msg: "Post removed" });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).send("Server Error");
+  }
+});
 
 //@route api/posts/like/:post_id/
 //@desc PUT like a post

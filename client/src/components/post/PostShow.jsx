@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
-import { useDispatch } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Container,
   Card,
@@ -11,12 +12,13 @@ import {
   CardFooter,
   Row,
   Label,
+  Button,
   Media,
   Col,
   Form,
   FormGroup,
 } from "reactstrap";
-import { addLike, removeLike } from "../../actions/post";
+import { addLike, removeLike, deletePost } from "../../actions/post";
 const PostShow = ({
   post: {
     _id,
@@ -30,7 +32,9 @@ const PostShow = ({
 
     category: { category },
   },
+  history,
 }) => {
+  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   return (
     <Container className="my-5">
@@ -58,7 +62,20 @@ const PostShow = ({
               <strong>Owner:</strong> {user.name} <br />
               <strong>Contact:</strong> {user.email} <br></br>
             </i>
-            {description}
+            <hr />
+            {description} <br></br>
+            {!auth.loading && (
+              <Fragment>
+                {user._id === auth.user._id ? (
+                  <Button
+                    color="danger"
+                    onClick={() => dispatch(deletePost(_id, history))}
+                  >
+                    Delete
+                  </Button>
+                ) : null}
+              </Fragment>
+            )}
           </CardText>
         </CardBody>
         <CardFooter
@@ -90,4 +107,4 @@ const PostShow = ({
   );
 };
 
-export default PostShow;
+export default withRouter(PostShow);

@@ -1,10 +1,12 @@
 import {
   GET_POSTS,
   GET_POST,
+  ADD_POST,
   ADD_COMMENT,
   DELETE_COMMENT,
   UPDATE_LIKES,
   UPDATE_CATEGORY,
+  DELETE_POST,
 } from "../actions/types";
 
 const initialState = {
@@ -42,7 +44,15 @@ const postReducer = (state = initialState, action) => {
         post: { ...state.post, comments: payload },
         loading: false,
       };
-
+    case DELETE_POST:
+      return {
+        ...state,
+        post: null,
+        posts: state.posts.filter(
+          (post) => post._id.toString() !== payload.toString()
+        ),
+        loading: false,
+      };
     case DELETE_COMMENT:
       return {
         ...state,

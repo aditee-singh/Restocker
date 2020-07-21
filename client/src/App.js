@@ -28,7 +28,7 @@ const App = () => {
         <Route path="/" exact component={Landing}></Route>
         <ReactAlert></ReactAlert>
         <Switch>
-          <Container>
+          <Container style={{ height: "90vh" }}>
             <Route path="/register" exact component={Register}></Route>
             <Route path="/login" exact component={Login}></Route>
             <Route path="/new-post" exact component={PostForm}></Route>
