@@ -214,12 +214,13 @@ router.put("/like/:post_id", auth, async (req, res) => {
   }
 });
 
-//@route DELETE api/comment/:post_id/:comment_id
+//@route DELETE api/posts/comment/:post_id/:comment_id
 //@desc delete a comment
 //@access PRIVATE
 router.delete("/comment/:post_id/:comment_id", auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.post_id);
+    console.log(post);
     const comment = post.comments.find(
       (comment) => comment.id.toString() === req.params.comment_id
     );
@@ -228,7 +229,9 @@ router.delete("/comment/:post_id/:comment_id", auth, async (req, res) => {
         msg: "Comment not found",
       });
     }
-    if (comment.user.toString() !== req.user.id) {
+    console.log(req.user.id, comment.user, post.user);
+    console.log(comment);
+    if (comment.user.toString() !== req.user.id.toString() && req.user.id !== post.user.toString()) {
       return res.status(400).json({
         msg: "User not authorized",
       });

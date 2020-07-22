@@ -1,9 +1,21 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteComment } from "../../actions/post";
-import { Card, Row, Col, Media, Container } from "reactstrap";
+import {
+  Card,
+  Row,
+  Col,
+  Media,
+  Container,
+  CardFooter,
+  Button,
+} from "reactstrap";
 const CommentItem = ({ comment, post }) => {
+  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  {
+    console.log(comment, post);
+  }
   return (
     <Container>
       <Row>
@@ -12,7 +24,24 @@ const CommentItem = ({ comment, post }) => {
             <Media>
               <Media body>
                 <Media heading>{comment.name}</Media>
-                {comment.text}
+                <div
+                  className="d-flex"
+                  style={{ justifyContent: "space-between" }}
+                >
+                  <span>{comment.text}</span>{" "}
+                  {(!auth.loading &&
+                    comment.user.toString() === auth.user._id.toString()) ||
+                  post.user._id.toString() === auth.user._id.toString() ? (
+                    <Button
+                      color="danger"
+                      onClick={() =>
+                        dispatch(deleteComment(post._id, comment._id))
+                      }
+                    >
+                      X
+                    </Button>
+                  ) : null}
+                </div>
               </Media>
             </Media>
           </Card>
