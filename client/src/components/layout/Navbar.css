@@ -1,0 +1,15 @@
+li.nav-item{
+    margin-left: 2rem;
+}
+li.nav-item a{
+    cursor: pointer;
+    color: #aaa0a0
+}
+li.nav-item:hover a{
+    color: #fff
+}
+@media(max-width:768px){
+    li.nav-item{
+        padding-top: 1rem;
+    }
+}

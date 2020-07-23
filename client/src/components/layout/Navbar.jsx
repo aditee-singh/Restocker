@@ -12,6 +12,7 @@ import {
   Container,
   NavLink,
 } from "reactstrap";
+import './Navbar.css'
 
 import { logout } from "../../actions/auth";
 
@@ -26,31 +27,37 @@ const Example = () => {
       <NavItem className="mx-3">
         <Link
           to="/login"
-          style={{ textDecoration: "!important none", color: "#FFF" }}
-        >
-          Login
+
+        >Login
         </Link>
       </NavItem>
-      <NavItem>
+      <NavItem className="mx-3">
         <Link
           to="/register"
-          style={{ textDecoration: "!important none", color: "#FFF" }}
-        >
-          Register
+        >Register
         </Link>
       </NavItem>
+
     </Nav>
   );
   const authLink = (
     <Nav className="mr-auto" navbar>
       <NavItem>
-        <NavLink href="/posts">PRODUCTS</NavLink>
+        <Link to="/posts" >PRODUCTS</Link>
+      </NavItem>
+      <NavItem>
+        <Link
+          to="/new-post"
+
+        >
+          New Post
+        </Link>
       </NavItem>
       <NavItem onClick={() => dispatch(logout())}>
-        <NavLink>LOGOUT</NavLink>
+        <Link > LOGOUT</Link>
       </NavItem>
       {!loading && isAuthenticated && user && (
-        <NavbarText>{user.name}</NavbarText>
+        <NavItem style={{ textDecoration: "!important none", color: "#FFF" }} >{user.name}</NavItem>
       )}
     </Nav>
   );
@@ -62,7 +69,7 @@ const Example = () => {
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
         {!loading && (
-          <Fragment>{isAuthenticated ? authLink : guestLink}</Fragment>
+          <Fragment >{isAuthenticated ? authLink : guestLink}</Fragment>
         )}
       </Collapse>
     </Navbar>

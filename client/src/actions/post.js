@@ -51,10 +51,10 @@ export const getPostByCategory = (category) => async (dispatch) => {
       type: UPDATE_CATEGORY,
       payload: category,
     });
-  } catch (error) {}
+  } catch (error) { }
 };
 
-export const addPost = (formData) => async (dispatch) => {
+export const addPost = (formData, history) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "multipart/form-data",
@@ -66,6 +66,8 @@ export const addPost = (formData) => async (dispatch) => {
       type: ADD_POST,
       payload: res.data,
     });
+    dispatch(setAlert("Posted", "success"));
+    history.push('/posts')
   } catch (error) {
     console.log(error);
     dispatch({ type: POST_ERROR });

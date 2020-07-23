@@ -32,6 +32,11 @@ const postReducer = (state = initialState, action) => {
         category: payload,
       };
     }
+    case ADD_POST:
+      return {
+        ...state,
+        posts: [...state.posts, payload]
+      }
     case GET_POST:
       return {
         ...state,
