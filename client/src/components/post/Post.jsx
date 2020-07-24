@@ -25,6 +25,7 @@ const Post = ({ match }) => {
           </Container>
         </Col>
       </Row>
+
       {post.comments.map((comment) => (
         <CommentItem
           key={comment._id}
@@ -34,7 +35,7 @@ const Post = ({ match }) => {
       ))}
     </Fragment>
   ) : (
-    <Spinner></Spinner>
-  );
+      <Spinner></Spinner>
+    );
 };
 export default Post;

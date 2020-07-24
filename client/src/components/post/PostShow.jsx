@@ -79,7 +79,7 @@ const PostShow = ({
           </CardText>
         </CardBody>
         <CardFooter
-          style={{ display: "flex", justifyContent: "space-between" }}
+          style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
         >
           <h6>{trade}</h6>
           <div>
