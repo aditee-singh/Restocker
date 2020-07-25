@@ -31,7 +31,7 @@ const App = () => {
           <Container style={{ height: "90vh" }}>
             <Route path="/register" exact component={Register}></Route>
             <Route path="/login" exact component={Login}></Route>
-            <Route path="/new-post" exact component={PostForm}></Route>
+            <PrivateRoute path="/new-post" exact component={PostForm}></PrivateRoute>
             <PrivateRoute path="/posts" exact component={Posts}></PrivateRoute>
             <PrivateRoute
               path="/posts/:id"

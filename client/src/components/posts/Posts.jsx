@@ -17,10 +17,10 @@ const Posts = () => {
   return (
     <Fragment>
       <Container>
-        <div className="center">
+        <div className="mt-3">
           <DropDown></DropDown>
         </div>
-        <h3 align="center">{category ? category : "All Posts"}</h3>
+        <h3 align="center">{category ? category : "Products"}</h3>
         <Row>
           <Col sm={12} md={{ size: 6, offset: 3 }}>
             <section>

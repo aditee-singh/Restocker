@@ -46,10 +46,10 @@ const Login = () => {
             </CardTitle>
             <Form onSubmit={(e) => onSubmit(e)}>
               <FormGroup row>
-                <Label for="email" sm={2}>
+                <Label for="email" sm={3}>
                   Email
                 </Label>
-                <Col sm={10}>
+                <Col sm={9}>
                   <Input
                     type="email"
                     name="email"
@@ -62,10 +62,10 @@ const Login = () => {
               </FormGroup>
 
               <FormGroup row>
-                <Label for="password" sm={2}>
+                <Label for="password" sm={3}>
                   Password
                 </Label>
-                <Col sm={10}>
+                <Col sm={9}>
                   <Input
                     type="password"
                     name="password"
