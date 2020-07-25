@@ -44,7 +44,7 @@ After running a build in the client 👆, cd into the root of the project.
 And run...
 
 ```bash
-NODE_ENV=production node server.js
+NODE_ENV=production node index.js
 ```
 
 Check in browser on [http://localhost:5000/](http://localhost:5000/)
