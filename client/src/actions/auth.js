@@ -49,6 +49,7 @@ export const register = (formData) => async (dispatch) => {
       errors.map((error) => dispatch(setAlert(error.msg, "danger")));
     }
     dispatch({ type: REGISTER_FAIL });
+    dispatch(setAlert("Fill all fields", "danger"));
   }
 };
 
@@ -73,7 +74,7 @@ export const login = (formData) => async (dispatch) => {
     if (errors) {
       errors.map((error) => dispatch(setAlert(error.msg, "danger")));
     }
-
+    dispatch(setAlert("Fill all fields", "danger"));
     dispatch({ type: LOGIN_FAIL });
   }
 };

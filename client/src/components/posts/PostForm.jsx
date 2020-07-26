@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstrap'
 import { addPost } from "../../actions/post";
 
-import { Redirect } from "react-router-dom";
 const PostForm = ({ history }) => {
 
   const dispatch = useDispatch();
@@ -60,6 +59,7 @@ const PostForm = ({ history }) => {
                 <option defaultValue="Choose">Choose</option>
                 <option value="Books">Books</option>
                 <option value="Clothes">Clothes</option>
+                <option value="Others">Others</option>
               </Input>
             </FormGroup></Col>
           <Col md={6}>
@@ -69,6 +69,8 @@ const PostForm = ({ history }) => {
               <Input type="select" name="trade" id="trade" value={trade} onChange={(e) => handleChange(e)} >
                 <option defaultValue="Choose">Choose</option>
                 <option value="Buy and Sell">Buy and Sell</option>
+                <option value="Donation">Donation</option>
+                <option value="Exchange">Exchange</option>
               </Input>
             </FormGroup>
           </Col>

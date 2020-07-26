@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import Moment from "react-moment";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./img.css";
 import {
   Container,
@@ -11,7 +11,7 @@ import {
   CardFooter,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import { addLike, removeLike } from "../../actions/post";
+
 const PostItem = ({
   post: { _id, title, description, imageUrl, date, trade, likes, user },
 }) => {

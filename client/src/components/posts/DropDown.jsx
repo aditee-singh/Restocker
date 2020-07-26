@@ -22,6 +22,9 @@ const Example = (props) => {
         <DropdownItem onClick={() => dispatch(getPostByCategory("Clothes"))}>
           Clothes
         </DropdownItem>
+        <DropdownItem onClick={() => dispatch(getPostByCategory("Others"))}>
+          Others
+        </DropdownItem>
       </DropdownMenu>
     </Dropdown>
   );

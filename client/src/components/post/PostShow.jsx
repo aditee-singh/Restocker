@@ -4,19 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   Container,
   Card,
-  CardTitle,
+
   CardHeader,
   CardBody,
   CardText,
-  Input,
+
   CardFooter,
-  Row,
-  Label,
   Button,
-  Media,
-  Col,
-  Form,
-  FormGroup,
+
 } from "reactstrap";
 import { addLike, removeLike, deletePost } from "../../actions/post";
 const PostShow = ({

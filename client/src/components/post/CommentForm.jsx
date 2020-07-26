@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addComment } from "../../actions/post";
-import { Row, Col, Input, Form, FormGroup } from "reactstrap";
+import { Input, Form, FormGroup } from "reactstrap";
 const CommentForm = ({ postId }) => {
   const dispatch = useDispatch();
   const [text, setText] = useState("");

@@ -71,7 +71,9 @@ export const addPost = (formData, history) => async (dispatch) => {
   } catch (error) {
     console.log(error);
     dispatch({ type: POST_ERROR });
+    dispatch(setAlert("Fill all fields", "danger"));
   }
+
 };
 
 export const addComment = (text, postId) => async (dispatch) => {
