@@ -1,15 +1,21 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Moment from "react-moment";
 import { useDispatch } from "react-redux";
-import "./img.css";
 import {
-  Container,
+  Paper,
+  Typography,
   Card,
+  Container,
+  CardContent,
+  Box,
   CardHeader,
-  CardBody,
-  CardText,
-  CardFooter,
-} from "reactstrap";
+  CardTitle,
+  Grid,
+  CardMedia,
+  Grow,
+} from "@material-ui/core";
+import "./img.css";
+import useStyles from "./PostItemStyles";
 import { Link } from "react-router-dom";
 
 const PostItem = ({
@@ -17,46 +23,43 @@ const PostItem = ({
 }) => {
   // const { trade } = useSelector((state) => state.post.post.trade);
   console.log(title);
+  const classes = useStyles();
   const dispatch = useDispatch();
   return (
-    <Fragment>
+    <Grow in>
       <Container>
-        <Link
-          style={{ textDecoration: "none", color: "black" }}
-          to={`/posts/${_id}`}
-        >
-          <Card style={{ textDecoration: "!important none" }} className="my-3">
-            <h3>
-              <CardHeader
-                style={{ display: "flex", justifyContent: "space-between" }}
-              >
-                <div>{description}</div>
+        <Paper elevation={3}>
+          <Link
+            style={{ textDecoration: "none", color: "black" }}
+            to={`/posts/${_id}`}
+          >
+            <Card>
+              <CardHeader title={title}>
+                <Typography>{description}</Typography>
                 <Moment format="YYYY/MM/DD">{date}</Moment>
               </CardHeader>
-            </h3>
-            <CardBody>
-              <img
-                src={
+              <CardMedia
+                className={classes.media}
+                image={
                   imageUrl ||
                   "https://cdn.pixabay.com/photo/2020/06/15/15/16/the-caucasus-5302236_960_720.jpg"
                 }
-                width="100%"
-                height="288px"
-              ></img>
-              <CardText>{description}</CardText>
-            </CardBody>
-            <CardFooter
-              style={{ display: "flex", justifyContent: "space-between" }}
-            >
-              {trade.trade}
-              <div>
-                People interested in this: <span>{likes.length}</span>
-              </div>
-            </CardFooter>
-          </Card>
-        </Link>
+                title={title}
+              />
+              <CardContent>
+                <Typography paragraph>{description}</Typography>
+              </CardContent>
+              <CardContent className={classes.lowerSection}>
+                <Typography>{trade.trade}</Typography>
+                <Box>
+                  Interested: <span>{likes?.length}</span>
+                </Box>
+              </CardContent>
+            </Card>
+          </Link>
+        </Paper>
       </Container>
-    </Fragment>
+    </Grow>
   );
 };
 export default PostItem;

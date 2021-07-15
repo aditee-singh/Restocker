@@ -1,9 +1,10 @@
 import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../actions/post";
-import { Container, Row, Col } from "reactstrap";
+import { Container } from "@material-ui/core";
 import DropDown from "./DropDown";
 import PostItem from "./PostItem";
+import Masonry from "react-masonry-css";
 
 const Posts = () => {
   const dispatch = useDispatch();
@@ -11,26 +12,30 @@ const Posts = () => {
   useEffect(() => {
     dispatch(getPosts());
   }, [dispatch]);
+  const breakpoints = {
+    default: 3,
+    1100: 2,
+    700: 1,
+  };
   useEffect(() => {
     console.log(posts);
   }, [posts]);
   return (
     <Fragment>
-      <Container>
-        <div className="mt-3">
-          <DropDown></DropDown>
-        </div>
-        <h3 align="center">{category ? category : "Products"}</h3>
-        <Row>
-          <Col sm={12} md={{ size: 6, offset: 3 }}>
-            <section>
-              {posts.map((post) => (
-                <PostItem key={post._id} post={post}></PostItem>
-              ))}
-            </section>
-          </Col>
-        </Row>
-      </Container>
+      <div className="mt-3">
+        <DropDown></DropDown>
+      </div>
+      <h3 align="center">{category ? category : "Products"}</h3>
+
+      <Masonry
+        breakpointCols={breakpoints}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column"
+      >
+        {posts.map((post) => (
+          <PostItem key={post._id} post={post}></PostItem>
+        ))}
+      </Masonry>
     </Fragment>
   );
 };

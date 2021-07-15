@@ -4,14 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   Container,
   Card,
-
   CardHeader,
   CardBody,
   CardText,
-
   CardFooter,
   Button,
-
 } from "reactstrap";
 import { addLike, removeLike, deletePost } from "../../actions/post";
 const PostShow = ({
@@ -61,7 +58,7 @@ const PostShow = ({
             {description} <br></br>
             {!auth.loading && (
               <Fragment>
-                {user._id === auth.user._id ? (
+                {user?._id === auth?.user._id ? (
                   <Button
                     color="danger"
                     onClick={() => dispatch(deletePost(_id, history))}
@@ -74,7 +71,11 @@ const PostShow = ({
           </CardText>
         </CardBody>
         <CardFooter
-          style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
         >
           <h6>{trade}</h6>
           <div>

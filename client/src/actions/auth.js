@@ -69,7 +69,7 @@ export const login = (formData) => async (dispatch) => {
     dispatch(loadUser());
     dispatch(setAlert("Welcome back", "success"));
   } catch (error) {
-    console.log(error);
+    console.log(error.response.data);
     const errors = error.response.data.errors;
     if (errors) {
       errors.map((error) => dispatch(setAlert(error.msg, "danger")));

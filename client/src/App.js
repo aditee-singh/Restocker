@@ -13,7 +13,7 @@ import setToken from "./utils/setAuthToken";
 import Landing from "./components/layout/Landing";
 import Post from "./components/post/Post";
 import PostForm from "./components/posts/PostForm";
-import { Container } from "reactstrap";
+import { Container } from "@material-ui/core";
 const App = () => {
   if (localStorage.token) {
     setToken(localStorage.token);
@@ -28,7 +28,7 @@ const App = () => {
         <Route path="/" exact component={Landing}></Route>
         <ReactAlert></ReactAlert>
         <Switch>
-          <Container style={{ height: "90vh" }}>
+          <Container>
             <Route path="/register" exact component={Register}></Route>
             <Route path="/login" exact component={Login}></Route>
             <PrivateRoute path="/new-post" exact component={PostForm}></PrivateRoute>
