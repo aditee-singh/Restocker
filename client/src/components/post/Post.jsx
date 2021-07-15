@@ -1,7 +1,7 @@
 import React, { useEffect, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPost } from "../../actions/post";
-import { Row, Col, Container } from "reactstrap";
+import { Grid, Container } from "@material-ui/core";
 import { Spinner } from "reactstrap";
 import CommentForm from "./CommentForm";
 import CommentItem from "./CommentItem";
@@ -16,14 +16,14 @@ const Post = ({ match }) => {
 
   return !loading && post !== null ? (
     <Fragment>
-      <Row>
-        <Col sm="12" md={{ size: 10, offset: 1 }}>
+      <Grid container>
+        <Grid xs={12} sm={12} md={6} lg={6}>
           <PostShow post={post}></PostShow>
           <Container>
             <CommentForm postId={post._id}></CommentForm>
           </Container>
-        </Col>
-      </Row>
+        </Grid>
+      </Grid>
 
       {post.comments.map((comment) => (
         <CommentItem
@@ -34,7 +34,7 @@ const Post = ({ match }) => {
       ))}
     </Fragment>
   ) : (
-      <Spinner></Spinner>
-    );
+    <Spinner></Spinner>
+  );
 };
 export default Post;
