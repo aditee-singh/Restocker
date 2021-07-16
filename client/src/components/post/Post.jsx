@@ -16,14 +16,7 @@ const Post = ({ match }) => {
 
   return !loading && post !== null ? (
     <Fragment>
-      <Grid container>
-        <Grid xs={12} sm={12} md={6} lg={6}>
-          <PostShow post={post}></PostShow>
-          <Container>
-            <CommentForm postId={post._id}></CommentForm>
-          </Container>
-        </Grid>
-      </Grid>
+      <PostShow post={post}></PostShow>
 
       {post.comments.map((comment) => (
         <CommentItem

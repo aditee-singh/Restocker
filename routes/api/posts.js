@@ -170,6 +170,7 @@ router.put(
 router.delete("/:post_id", auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.post_id);
+    console.log(post);
     if (!post) {
       return res.status(404).json({ msg: "Post not found" });
     }
@@ -177,7 +178,7 @@ router.delete("/:post_id", auth, async (req, res) => {
       return res.status(404).json({ msg: "You can only delete your posts" });
     }
     if (post.imageUrl) {
-      await cloudinary.v2.uploader.destroy(post.imagePublicId);
+      await cloudinary.v2.uploader.destroy(post.imageUrl);
     }
     await post.remove();
     res.json({ msg: "Post removed" });

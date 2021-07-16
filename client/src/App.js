@@ -6,6 +6,7 @@ import ReactAlert from "./components/layout/Alert";
 import Register from "./components/auth/Register";
 import { loadUser } from "./actions/auth";
 import store from "./store";
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Login from "./components/auth/Login";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import Posts from "./components/posts/Posts";
@@ -23,6 +24,7 @@ const App = () => {
   }, []);
   return (
     <Router>
+      <CssBaseline />
       <Fragment>
         <Navbar></Navbar>
         <Route path="/" exact component={Landing}></Route>

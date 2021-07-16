@@ -12,7 +12,9 @@ import {
   Container,
   NavLink,
 } from "reactstrap";
-import './Navbar.css'
+import { AppBar, Typography } from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/Menu";
+import "./Navbar.css";
 
 import { logout } from "../../actions/auth";
 
@@ -25,54 +27,46 @@ const Example = () => {
   const guestLink = (
     <Nav className="mr-auto" navbar>
       <NavItem className="mx-3">
-        <Link
-          to="/login"
-
-        >Login
-        </Link>
+        <Link to="/login">Login</Link>
       </NavItem>
       <NavItem className="mx-3">
-        <Link
-          to="/register"
-        >Register
-        </Link>
+        <Link to="/register">Register</Link>
       </NavItem>
-
     </Nav>
   );
   const authLink = (
     <Nav className="mr-auto" navbar>
       <NavItem>
-        <Link to="/posts" >PRODUCTS</Link>
+        <Link to="/posts">PRODUCTS</Link>
       </NavItem>
       <NavItem>
-        <Link
-          to="/new-post"
-
-        >
-          New Post
-        </Link>
+        <Link to="/new-post">New Post</Link>
       </NavItem>
       <NavItem onClick={() => dispatch(logout())}>
-        <Link > LOGOUT</Link>
+        <Link> LOGOUT</Link>
       </NavItem>
       {!loading && isAuthenticated && user && (
-        <NavItem style={{ textDecoration: "!important none", color: "#FFF" }} >{user.name}</NavItem>
+        <NavItem style={{ textDecoration: "!important none", color: "#FFF" }}>
+          {user.name}
+        </NavItem>
       )}
     </Nav>
   );
   return (
-    <Navbar color="dark" dark expand="md">
-      <NavbarBrand href="/">
-        R E S T O C K E R <i className="fas fa-shopping-cart"></i>
-      </NavbarBrand>
-      <NavbarToggler onClick={toggle} />
-      <Collapse isOpen={isOpen} navbar>
-        {!loading && (
-          <Fragment >{isAuthenticated ? authLink : guestLink}</Fragment>
-        )}
-      </Collapse>
-    </Navbar>
+    <AppBar position="static">
+      <MenuIcon />
+    </AppBar>
+    // <Navbar color="dark" dark expand="md">
+    //   <NavbarBrand href="/">
+    //     R E S T O C K E R <i className="fas fa-shopping-cart"></i>
+    //   </NavbarBrand>
+    //   <NavbarToggler onClick={toggle} />
+    //   <Collapse isOpen={isOpen} navbar>
+    //     {!loading && (
+    //       <Fragment >{isAuthenticated ? authLink : guestLink}</Fragment>
+    //     )}
+    //   </Collapse>
+    // </Navbar>
   );
 };
 
