@@ -61,13 +61,15 @@ const PostShow = ({
               </Avatar>
             }
             action={
-              <IconButton
-                onClick={() => {
-                  setOpen(true);
-                }}
-              >
-                <MoreVertIcon />
-              </IconButton>
+              auth.user._id === user._id && (
+                <IconButton
+                  onClick={() => {
+                    setOpen(true);
+                  }}
+                >
+                  <MoreVertIcon />
+                </IconButton>
+              )
             }
           />
           <CardMedia
