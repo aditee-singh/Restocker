@@ -8,7 +8,10 @@ function Alert(props) {
 const ReactAlert = () => {
   const alerts = useSelector((state) => state.alert);
   const allAlerts = alerts.map((alert) => (
-    <Alert key={alert.id} severity="error">
+    <Alert
+      key={alert.id}
+      severity={alert.alertType === "danger" ? "error" : "success"}
+    >
       {alert.msg}
     </Alert>
   ));

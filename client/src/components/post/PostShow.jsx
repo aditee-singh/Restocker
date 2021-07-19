@@ -15,6 +15,7 @@ import {
   Button,
   Avatar,
   CardActions,
+  Divider,
 } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { addComment } from "../../actions/post";
@@ -22,17 +23,18 @@ import usePostStyles from "../posts/PostItemStyles";
 import { addLike, removeLike, deletePost } from "../../actions/post";
 import CommentForm from "./CommentForm";
 import Dialogue from "./Dialog";
+import CommentItem from "./CommentItem";
 const PostShow = ({
   post: {
     _id,
     title,
     description,
     imageUrl,
+    comments,
     date,
     trade: { trade },
     likes,
     user,
-
     category: { category },
   },
   history,
@@ -88,7 +90,15 @@ const PostShow = ({
               text={text}
               setText={setText}
             />
+            <Divider />
           </CardActions>
+          {comments.map((comment) => (
+            <CommentItem
+              key={comment._id}
+              user={user}
+              comment={comment}
+            ></CommentItem>
+          ))}
         </Card>
       </Paper>
       <Dialogue open={open} setOpen={setOpen} id={_id} />
