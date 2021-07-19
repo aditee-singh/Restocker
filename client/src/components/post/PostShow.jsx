@@ -25,25 +25,26 @@ import CommentForm from "./CommentForm";
 import Dialogue from "./Dialog";
 import CommentItem from "./CommentItem";
 const PostShow = ({
-  post: {
-    _id,
-    title,
-    description,
-    imageUrl,
-    comments,
-    date,
-    trade: { trade },
-    likes,
-    user,
-    category: { category },
-  },
-  history,
+  post,
+  // post: {
+  //   _id,
+  //   title,
+  //   description,
+  //   imageUrl,
+  //   comments,
+  //   date,
+  //   trade: { trade },
+  //   likes,
+  //   user,
+  //   category: { category },
+  // },
+  // history,
 }) => {
   const [text, setText] = useState("");
   const handleComment = (e) => {
     e.preventDefault();
     console.log(text);
-    dispatch(addComment({ text }, _id));
+    dispatch(addComment({ text }, post._id));
     setText("");
   };
   const [open, setOpen] = useState(false);
@@ -55,15 +56,15 @@ const PostShow = ({
       <Paper>
         <Card>
           <CardHeader
-            title={title}
-            subheader={category}
+            title={post.title}
+            subheader={post.category.category}
             avatar={
-              <Avatar aria-label={user.name.split(" ").slice(0, 1)}>
-                {user.name.split(" ")[0].slice(0, 1)}
+              <Avatar aria-label={post.user.name.split(" ").slice(0, 1)}>
+                {post.user.name.split(" ")[0].slice(0, 1)}
               </Avatar>
             }
             action={
-              auth.user._id === user._id && (
+              auth.user._id === post.user._id && (
                 <IconButton
                   onClick={() => {
                     setOpen(true);
@@ -77,12 +78,12 @@ const PostShow = ({
           <CardMedia
             className={classes.media}
             image={
-              imageUrl ||
+              post.imageUrl ||
               "https://cdn.pixabay.com/photo/2020/06/15/15/16/the-caucasus-5302236_960_720.jpg"
             }
           />
           <CardContent>
-            <Typography paragraph>{description}</Typography>
+            <Typography paragraph>{post.description}</Typography>
           </CardContent>
           <CardActions>
             <CommentForm
@@ -92,16 +93,16 @@ const PostShow = ({
             />
             <Divider />
           </CardActions>
-          {comments.map((comment) => (
+          {post.comments.map((comment) => (
             <CommentItem
               key={comment._id}
-              user={user}
+              post={post}
               comment={comment}
             ></CommentItem>
           ))}
         </Card>
       </Paper>
-      <Dialogue open={open} setOpen={setOpen} id={_id} />
+      <Dialogue open={open} setOpen={setOpen} id={post._id} />
     </Container>
     // <Paper>
     //   <Container>

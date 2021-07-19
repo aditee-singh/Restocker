@@ -17,14 +17,6 @@ const Post = ({ match }) => {
   return !loading && post !== null ? (
     <Fragment>
       <PostShow post={post}></PostShow>
-
-      {post.comments.map((comment) => (
-        <CommentItem
-          key={comment._id}
-          post={post}
-          comment={comment}
-        ></CommentItem>
-      ))}
     </Fragment>
   ) : (
     <Spinner></Spinner>
