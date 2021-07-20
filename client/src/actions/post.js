@@ -147,7 +147,7 @@ export const removeLike = (postId) => async (dispatch) => {
     dispatch({
       type: POST_ERROR,
     });
-    dispatch(setAlert("Something went wrong", "danger"));
+    dispatch(setAlert("Something went wrong", "dan ger"));
   }
 };
 export const deletePost = (postId, history) => async (dispatch) => {
