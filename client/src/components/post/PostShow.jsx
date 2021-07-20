@@ -22,8 +22,11 @@ import { addComment } from "../../actions/post";
 import usePostStyles from "../posts/PostItemStyles";
 import { addLike, removeLike, deletePost } from "../../actions/post";
 import CommentForm from "./CommentForm";
+import CancelIcon from "@material-ui/icons/Cancel";
 import Dialogue from "./Dialog";
 import CommentItem from "./CommentItem";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+
 const PostShow = ({
   post,
   // post: {
@@ -85,12 +88,36 @@ const PostShow = ({
           <CardContent>
             <Typography paragraph>{post.description}</Typography>
           </CardContent>
-          <CardActions>
-            <CommentForm
-              handleComment={handleComment}
-              text={text}
-              setText={setText}
-            />
+          <CardActions
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "stretch",
+            }}
+          >
+            <Box>
+              <IconButton
+                color="secondary"
+                aria-label="add to favorites"
+                onClick={() => dispatch(addLike(post._id))}
+              >
+                <FavoriteIcon />
+              </IconButton>
+              <IconButton
+                color="primary"
+                aria-label="add to favorites"
+                onClick={() => dispatch(removeLike(post._id))}
+              >
+                <CancelIcon />
+              </IconButton>
+            </Box>
+            <Box>
+              <CommentForm
+                handleComment={handleComment}
+                text={text}
+                setText={setText}
+              />
+            </Box>
             <Divider />
           </CardActions>
           {post.comments.map((comment) => (

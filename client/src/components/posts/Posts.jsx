@@ -5,10 +5,12 @@ import { Container } from "@material-ui/core";
 import DropDown from "./DropDown";
 import PostItem from "./PostItem";
 import Masonry from "react-masonry-css";
+import Spinner from "../layout/Spinner";
 
 const Posts = () => {
   const dispatch = useDispatch();
   const { posts, category } = useSelector((state) => state.post);
+  const auth = useSelector((state) => state.auth);
   useEffect(() => {
     dispatch(getPosts());
   }, [dispatch]);
@@ -20,6 +22,9 @@ const Posts = () => {
   useEffect(() => {
     console.log(posts);
   }, [posts]);
+  if (auth.loading) {
+    return <Spinner />;
+  }
   return (
     <Fragment>
       <div className="mt-3">

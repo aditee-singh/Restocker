@@ -14,10 +14,10 @@ import {
   InputLabel,
   Button,
 } from "@material-ui/core";
-import Radio from "@material-ui/icons/Radio";
+
 // import { Form, FormGroup, Label, Input, Button, Row, Col } from "reactstrap";
 import { addPost } from "../../actions/post";
-
+import useStyles from "./PostFormStyle";
 const PostForm = ({ history }) => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
@@ -32,7 +32,7 @@ const PostForm = ({ history }) => {
       ...formData,
       [e.target.name]: e.target.value.toString(),
     });
-
+  const classes = useStyles();
   const { title, description, category, trade } = formData;
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -48,7 +48,7 @@ const PostForm = ({ history }) => {
   };
   return (
     <Grow in>
-      <Container maxWidth="sm">
+      <Container maxWidth="sm" className={classes.cardContainer}>
         <Paper>
           <Container>
             <Typography variant="h3" align="center" gutterBottom>
@@ -65,7 +65,10 @@ const PostForm = ({ history }) => {
               <TextField
                 label="Description"
                 name="description"
+                rows={4}
+                variant="outlined"
                 value={description}
+                className={classes.description}
                 onChange={handleChange}
                 multiline
                 fullWidth
@@ -109,9 +112,22 @@ const PostForm = ({ history }) => {
                 </Grid>
               </Grid>
               <Divider />
-              <Button variant="contained" component="label">
+              <Button
+                variant="contained"
+                component="label"
+                className={classes.uploadButton}
+              >
                 Upload File
-                <input type="file" name="file" hidden />
+                <input
+                  type="file"
+                  name="image"
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    console.log(e.target.files);
+                    setFile(file);
+                  }}
+                  hidden
+                />
               </Button>
               <Button
                 style={{ marginTop: "10px", marginBottom: "10px" }}
