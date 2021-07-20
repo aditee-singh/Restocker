@@ -57,7 +57,7 @@ const Example = () => {
       <NavbarBrand href="/">
         R E S T O C K E R <i className="fas fa-shopping-cart"></i>
       </NavbarBrand>
-      <NavbarToggler onClick={toggle} />
+      <NavbarToggler onClick={toggle} className="navbar-text" />
       <Collapse isOpen={isOpen} navbar>
         {!loading && (
           <Fragment>{isAuthenticated ? authLink : guestLink}</Fragment>

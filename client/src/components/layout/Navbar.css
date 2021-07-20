@@ -1,15 +1,19 @@
-li.nav-item{
-    margin-left: 2rem;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
+.navbar-text {
+  font-family: "Montserrat", sans-serif;
 }
-li.nav-item a{
-    cursor: pointer;
-    color: #aaa0a0
+li.nav-item {
+  margin-left: 2rem;
 }
-li.nav-item:hover a{
-    color: #fff
+li.nav-item a {
+  cursor: pointer;
+  color: #aaa0a0;
 }
-@media(max-width:768px){
-    li.nav-item{
-        padding-top: 1rem;
-    }
+li.nav-item:hover a {
+  color: #fff;
+}
+@media (max-width: 768px) {
+  li.nav-item {
+    padding-top: 1rem;
+  }
 }
