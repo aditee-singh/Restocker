@@ -7,10 +7,12 @@ import {
   Paper,
   TextField,
   Typography,
-  Button,
+  Select,
+  Divider,
   MenuItem,
-  RadioGroup,
-  FormControlLabel,
+  FormControl,
+  InputLabel,
+  Button,
 } from "@material-ui/core";
 import Radio from "@material-ui/icons/Radio";
 // import { Form, FormGroup, Label, Input, Button, Row, Col } from "reactstrap";
@@ -52,36 +54,75 @@ const PostForm = ({ history }) => {
             <Typography variant="h3" align="center" gutterBottom>
               List your item
             </Typography>
-            <TextField label="Title" fullWidth />
-            <TextField label="Description" fullWidth multiline />
-            <Grid container justify="stretch" spacing={2}>
-              <Grid item xs={12} sm={12} md={6} lg={6}>
-                <TextField
-                  select
-                  label="Category"
-                  value={category || "Okay"}
-                  helperText="Select a Tyoe"
-                  fullWidth
-                >
-                  <MenuItem value="Books">Books</MenuItem>
-                  <MenuItem value="Clothes">Clothes</MenuItem>
-                  <MenuItem value="Others">Others</MenuItem>
-                </TextField>
+            <form onSubmit={(e) => onSubmit(e)}>
+              <TextField
+                label="Title"
+                onChange={handleChange}
+                name="title"
+                value={title}
+                fullWidth
+              />
+              <TextField
+                label="Description"
+                name="description"
+                value={description}
+                onChange={handleChange}
+                multiline
+                fullWidth
+              />
+              <Grid container justify="stretch" spacing={2}>
+                <Grid item xs={12} sm={12} md={6} lg={6}>
+                  <FormControl style={{ width: "100%" }}>
+                    <InputLabel id="demo-simple-select-label">
+                      Category
+                    </InputLabel>
+                    <Select
+                      name="category"
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={category}
+                      onChange={(e) => handleChange(e)}
+                      fullWidth
+                    >
+                      <MenuItem value="Books">Books</MenuItem>
+                      <MenuItem value="Clothes">Clothes</MenuItem>
+                      <MenuItem value="Others">Others</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12} sm={12} md={6} lg={6}>
+                  <FormControl style={{ width: "100%" }}>
+                    <InputLabel id="demo-simple-select-label">Trade</InputLabel>
+                    <Select
+                      name="trade"
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={trade}
+                      onChange={(e) => handleChange(e)}
+                      fullWidth
+                    >
+                      <MenuItem value="Buy and Sell">Buy and Sell</MenuItem>
+                      <MenuItem value="Donation">Donation</MenuItem>
+                      <MenuItem value="Exchange">Exchange</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
               </Grid>
-              <Grid item xs={12} sm={12} md={6} lg={6}>
-                <TextField
-                  select
-                  label="Category"
-                  value={category || "Okay"}
-                  helperText="Select a Tyoe"
-                  fullWidth
-                >
-                  <MenuItem value="Books">Books</MenuItem>
-                  <MenuItem value="Clothes">Clothes</MenuItem>
-                  <MenuItem value="Others">Others</MenuItem>
-                </TextField>
-              </Grid>
-            </Grid>
+              <Divider />
+              <Button variant="contained" component="label">
+                Upload File
+                <input type="file" name="file" hidden />
+              </Button>
+              <Button
+                style={{ marginTop: "10px", marginBottom: "10px" }}
+                type="submit"
+                color="primary"
+                variant="contained"
+                fullWidth
+              >
+                Submit
+              </Button>
+            </form>
           </Container>
         </Paper>
       </Container>

@@ -71,7 +71,7 @@ export const addPost = (formData, history) => async (dispatch) => {
   } catch (error) {
     console.log(error);
     dispatch({ type: POST_ERROR });
-    dispatch(setAlert("Fill all fields", "danger"));
+    dispatch(setAlert(error.response.data.errors[0].msg, "danger"));
   }
 
 };
@@ -98,7 +98,8 @@ export const addComment = (text, postId) => async (dispatch) => {
     dispatch({
       type: POST_ERROR,
     });
-    dispatch(setAlert("Something went wrong", "danger"));
+
+    dispatch(setAlert(error.response.data.errors[0].msg, "danger"));
   }
 };
 
@@ -114,7 +115,7 @@ export const deleteComment = (postId, commentId) => async (dispatch) => {
     dispatch({
       type: POST_ERROR,
     });
-    dispatch(setAlert("Something went wrong", "danger"));
+    dispatch(setAlert(error.response.data.errors[0].msg, "danger"));
   }
 };
 
@@ -146,7 +147,7 @@ export const removeLike = (postId) => async (dispatch) => {
     dispatch({
       type: POST_ERROR,
     });
-    dispatch(setAlert("Something went wrong", "danger"));
+    dispatch(setAlert(error.response.data.errors[0].msg, "danger"));
   }
 };
 export const deletePost = (postId, history) => async (dispatch) => {
@@ -163,6 +164,6 @@ export const deletePost = (postId, history) => async (dispatch) => {
     dispatch({
       type: POST_ERROR,
     });
-    dispatch(setAlert("Something went wrong", "danger"));
+    dispatch(setAlert(error.response.data.errors[0].msg, "danger"));
   }
 };

@@ -12,7 +12,7 @@ import {
   Container,
   NavLink,
 } from "reactstrap";
-import { AppBar, Typography } from "@material-ui/core";
+// import { AppBar, Typography } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import "./Navbar.css";
 
@@ -53,20 +53,17 @@ const Example = () => {
     </Nav>
   );
   return (
-    <AppBar position="static">
-      <MenuIcon />
-    </AppBar>
-    // <Navbar color="dark" dark expand="md">
-    //   <NavbarBrand href="/">
-    //     R E S T O C K E R <i className="fas fa-shopping-cart"></i>
-    //   </NavbarBrand>
-    //   <NavbarToggler onClick={toggle} />
-    //   <Collapse isOpen={isOpen} navbar>
-    //     {!loading && (
-    //       <Fragment >{isAuthenticated ? authLink : guestLink}</Fragment>
-    //     )}
-    //   </Collapse>
-    // </Navbar>
+    <Navbar color="dark" dark expand="md">
+      <NavbarBrand href="/">
+        R E S T O C K E R <i className="fas fa-shopping-cart"></i>
+      </NavbarBrand>
+      <NavbarToggler onClick={toggle} />
+      <Collapse isOpen={isOpen} navbar>
+        {!loading && (
+          <Fragment>{isAuthenticated ? authLink : guestLink}</Fragment>
+        )}
+      </Collapse>
+    </Navbar>
   );
 };
 

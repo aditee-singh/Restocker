@@ -57,7 +57,7 @@ const PostShow = ({
         <Card>
           <CardHeader
             title={post.title}
-            subheader={post.category.category}
+            subheader={`${post.category.category} | ${post.trade.trade}`}
             avatar={
               <Avatar aria-label={post.user.name.split(" ").slice(0, 1)}>
                 {post.user.name.split(" ")[0].slice(0, 1)}
