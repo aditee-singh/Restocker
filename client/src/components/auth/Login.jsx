@@ -40,7 +40,7 @@ const Login = () => {
           <Typography
             align="center"
             className={classes.heading}
-            variant="h4"
+            variant="h5"
             gutterBottom
           >
             Sign In

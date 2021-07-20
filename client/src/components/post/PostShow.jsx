@@ -62,12 +62,12 @@ const PostShow = ({
             title={post.title}
             subheader={`${post.category.category} | ${post.trade.trade}`}
             avatar={
-              <Avatar aria-label={post.user.name.split(" ").slice(0, 1)}>
+              <Avatar aria-label={post?.user?.name.split(" ")?.slice(0, 1)}>
                 {post.user.name.split(" ")[0].slice(0, 1)}
               </Avatar>
             }
             action={
-              auth.user._id === post.user._id && (
+              auth?.user?._id === post?.user?._id && (
                 <IconButton
                   onClick={() => {
                     setOpen(true);
