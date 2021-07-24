@@ -20,6 +20,7 @@ const App = () => {
   if (localStorage.token) {
     setToken(localStorage.token);
   }
+  console.log('I am aditee')
   useEffect(async () => {
     store.dispatch(loadUser());
   }, []);
